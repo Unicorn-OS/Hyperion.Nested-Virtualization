@@ -1,0 +1,20 @@
+
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+    <hyperv mode='custom'>
+      <vpindex state='on'/>
+      <synic state='on'/>
+    </hyperv>
+  </features>
+  <cpu mode='custom' match='exact' check='partial'>
+    <model fallback='allow'>Skylake-Client-noTSX-IBRS</model>
+    <topology sockets='1' dies='1' cores='5' threads='2'/>
+    <feature policy='disable' name='hypervisor'/>
+    <feature policy='require' name='vmx'/>
+    <feature policy='disable' name='mpx'/>
+  </cpu>
+  <clock offset='utc'/>
+  <on_poweroff>destroy</on_poweroff>
