@@ -1,0 +1,7 @@
+---
+- hosts: local #, fedora, ubuntu
+  vars:
+    source: "package"
+
+  roles:
+  - KVM nested virtualization
