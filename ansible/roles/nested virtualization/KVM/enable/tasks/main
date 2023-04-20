@@ -1,0 +1,17 @@
+---
+- set_fact:
+    cpu_make: intel
+  when: '"Intel" in ansible_processor[1]'
+
+- set_fact:
+    cpu_make: amd
+  when: '"AMD" in ansible_processor[1]'
+
+# https://www.linux-kvm.org/page/Nested_Guests
+- name: Enable nested virtualization in modprobe.d
+  ansible.builtin.lineinfile:
+    path: "/etc/modprobe.d/kvm_{{cpu_make}}.conf"
+    regexp: '^options kvm-'
+    line: "options kvm-{{cpu_make}} nested={{ 'Y' if 'Intel' in ansible_processor[1] else '1'}}"
+    create: true
+  become: true

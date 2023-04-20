@@ -4,4 +4,4 @@
     source: "package"
 
   roles:
-  - KVM nested virtualization
+  - nested virtualization/KVM
