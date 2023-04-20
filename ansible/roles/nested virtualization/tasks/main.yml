@@ -1,0 +1,9 @@
+---
+- include_role:
+    name: "{{role_path}}/KVM"
+  when: ansible_system == "Linux"
+
+
+- include_role:
+    name: "{{role_path}}/Hyper-V"
+  when: ansible_system == "Windows"
