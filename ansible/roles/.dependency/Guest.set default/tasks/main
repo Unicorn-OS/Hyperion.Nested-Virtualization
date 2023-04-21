@@ -1,0 +1,9 @@
+---
+- name: Set default Guest in .bash_profile and .bashrc
+  ansible.builtin.lineinfile:
+    path: "/home/{{ ansible_user }}/{{ item }}"
+    regexp: '^export default_KVM_guest'
+    line: "export default_KVM_guest={{ default_KVM_guest }}"
+  loop:
+  - .bash_profile
+  - .bashrc

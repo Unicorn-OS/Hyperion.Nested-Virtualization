@@ -1,0 +1,1 @@
+echo $default_KVM_guest

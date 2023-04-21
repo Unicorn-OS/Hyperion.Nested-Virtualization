@@ -1,7 +1,9 @@
 ---
 - hosts: local #, fedora, ubuntu
   vars:
-    source: "package"
+    default_KVM_guest: "fedora-LXDE"
 
   roles:
-  - nested virtualization
+  - Host.nested virtualization
+  - .dependency/Guest.set default
+  - Guest.domain XML

@@ -1,0 +1,9 @@
+---
+# source: https://ostechnix.com/how-to-enable-nested-virtualization-in-kvm-in-linux/
+cpu_line_linux: "<cpu mode='host-model' check='partial'/>"
+
+# source: https://www.redpill-linpro.com/techblog/2021/04/07/nested-virtualization-hyper-v-in-qemu-kvm.html
+cpu_block_windows: '''<cpu mode='custom' match='exact' check='partial'>
+  <model fallback='allow'>Broadwell</model>
+  <feature policy='require' name='vmx'/>
+</cpu>'''
