@@ -1,0 +1,29 @@
+---
+
+- name: Create directory for dumpxml
+  ansible.builtin.file:
+    path: "{{ xml_dir }}"
+    state: directory
+
+- name: Virsh dumpxml
+  ansible.builtin.shell: "virsh dumpxml {{ guest_domain }} > {{ xml_file }}"
+  args:
+    creates: "{{ xml_file }}"
+# Some distros (Fedora) require 'sudo' when running virsh
+  become: "{{ 'true' if ansible_distribution == 'Fedora' else 'false' }}"
+
+
+- name: Change domainxml file ownership
+  ansible.builtin.file:
+    path: "{{ xml_file }}"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    mode: '0755'
+  become: true
+
+# Do: Make this use Ansible delegate & ansible.builtin.setup module to detect guest OS! `ansible_system = 'Linux' 'Windows' or 'MacOS'``
+# For now Fallback on var
+- name: What type of Guest? Fallback on Default
+  ansible.builtin.include_tasks:
+    file: "{{ default_guest_OS }}.yml"
+

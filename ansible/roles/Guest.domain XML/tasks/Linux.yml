@@ -1,0 +1,37 @@
+---
+# for OS: Linux
+# source: https://ostechnix.com/how-to-enable-nested-virtualization-in-kvm-in-linux/
+
+- name: Clean, remove all children from <cpu/> element
+  community.general.xml:
+    path: "{{ xml_file }}"
+    xpath: /domain/cpu
+    set_children: []
+  when: remove_extra_cpu_settings
+
+# Todo: Make this use * wildcard!
+- name: Clean, extra attributes from <cpu/> element
+  community.general.xml:
+    path: "{{ xml_file }}"
+    xpath: "/domain/cpu/@{{ item }}"
+    state: absent
+  loop:
+  - migratable
+
+- name: Set cpu mode
+  community.general.xml:
+    path: "{{ xml_file }}"
+    xpath: /domain/cpu
+    attribute: mode
+    value: host-model
+  notify:
+  - Define vm from xml
+
+- name: Set cpu check
+  community.general.xml:
+    path: "{{ xml_file }}"
+    xpath: /domain/cpu
+    attribute: check
+    value: partial
+  notify:
+  - Define vm from xml

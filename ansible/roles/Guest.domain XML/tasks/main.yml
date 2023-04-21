@@ -1,6 +1,0 @@
----
-# source: https://ostechnix.com/how-to-enable-nested-virtualization-in-kvm-in-linux/
-
-- name: Get default KVM guest
-  ansible.builtin.debug:
-    msg: "{{ lookup('ansible.builtin.env', 'default_KVM_guest', default='nobody') }} is the user."

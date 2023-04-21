@@ -1,0 +1,7 @@
+---
+
+- name: Define vm from xml
+  ansible.builtin.shell: "virsh define {{ xml_file }}"
+# Some distros (Fedora) require 'sudo' when running virsh
+  become: "{{ 'true' if ansible_distribution == 'Fedora' else 'false' }}"
+  # when: ansible_distribution == 'Fedora'

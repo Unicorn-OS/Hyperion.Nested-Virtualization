@@ -4,6 +4,6 @@
     default_KVM_guest: "fedora-LXDE"
 
   roles:
-  - Host.nested virtualization
-  - .dependency/Guest.set default
+  # - Host.nested virtualization
+  # - .dependency/Guest.set default
   - Guest.domain XML
