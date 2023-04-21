@@ -27,3 +27,7 @@
   ansible.builtin.include_tasks:
     file: "{{ default_guest_OS }}.yml"
 
+- name: Cleanup, to finish
+  ansible.builtin.file:
+    path: "{{ xml_file }}"
+    state: absent
