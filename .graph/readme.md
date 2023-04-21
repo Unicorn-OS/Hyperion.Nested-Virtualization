@@ -4,4 +4,6 @@ https://docs.fedoraproject.org/en-US/quick-docs/using-nested-virtualization-in-k
 
 http://www.linux-kvm.org/page/Nested_Guests
 
+# Guest XML config:
+Works!  
 https://ostechnix.com/how-to-enable-nested-virtualization-in-kvm-in-linux/
